@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Kgotla Capital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="brand-logo-sm">
+                    <svg width="36" height="36" viewBox="0 0 48 48" fill="none">
+                        <rect width="48" height="48" rx="12" fill="url(#lg)"/>
+                        <path d="M14 34V14h8c2.2 0 4 .6 5.2 1.8 1.2 1.2 1.8 2.8 1.8 4.6 0 1.4-.4 2.6-1 3.6-.7 1-1.6 1.6-2.8 2l4.8 8h-4l-4.4-7.4H18V34h-4zm4-11h3.8c1.2 0 2-.3 2.6-.9.6-.6.9-1.4.9-2.5s-.3-1.9-.9-2.5c-.6-.6-1.4-.9-2.6-.9H18v6.8z" fill="white"/>
+                        <defs><linearGradient id="lg" x1="0" y1="0" x2="48" y2="48"><stop stop-color="#0D4F3C"/><stop offset="1" stop-color="#1A8F6E"/></linearGradient></defs>
+                    </svg>
+                    <span class="brand-text">Kgotla Capital</span>
+                </div>
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <span class="nav-label">Overview</span>
+                    <a href="#" class="nav-item active" data-page="dashboard" onclick="navigate('dashboard', this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                        <span>Dashboard</span>
+                    </a>
+                </div>
+
+                <!-- SME Menu -->
+                <div class="nav-section" data-roles="sme,admin">
+                    <span class="nav-label">SME Management</span>
+                    <a href="#" class="nav-item" data-page="sme-profile" onclick="navigate('sme-profile', this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <span>SME Profile</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="credit-scoring" onclick="navigate('credit-scoring', this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                        <span>Credit Scoring</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="compliance" onclick="navigate('compliance', this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                        <span>Compliance</span>
+                    </a>
+                </div>
+
+                <!-- Bond Structuring -->
+                <div class="nav-section" data-roles="admin,investor">
+                    <span class="nav-label">Bond Structuring</span>
+                    <a href="#" class="nav-item" data-page="pools" onclick="navigate('pools', this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+                        <span>SME Pools</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="tranches" onclick="navigate('tranches', this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                        <span>Bond Tranches</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="risk-sim" onclick="navigate('risk-sim', this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                        <span>Risk Simulation</span>
+                    </a>
+                </div>
+
+                <!-- Investor -->
+                <div class="nav-section" data-roles="investor,admin">
+                    <span class="nav-label">Investments</span>
+                    <a href="#" class="nav-item" data-page="invest-dashboard" onclick="navigate('invest-dashboard', this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+                        <span>Investment Hub</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="subscriptions" onclick="navigate('subscriptions', this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        <span>Subscriptions</span>
+                    </a>
+                </div>
+
+                <!-- Payments -->
+                <div class="nav-section" data-roles="sme,investor,admin">
+                    <span class="nav-label">Payments</span>
+                    <a href="#" class="nav-item" data-page="payments" onclick="navigate('payments', this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 4H3a2 2 0 00-2 2v12a2 2 0 002 2h18a2 2 0 002-2V6a2 2 0 00-2-2z"/><path d="M1 10h22"/></svg>
+                        <span>Payments</span>
+                    </a>
+                </div>
+
+                <!-- Regulatory -->
+                <div class="nav-section" data-roles="regulator,admin">
+                    <span class="nav-label">Regulatory</span>
+                    <a href="#" class="nav-item" data-page="reg-dashboard" onclick="navigate('reg-dashboard', this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+                        <span>Regulatory Reports</span>
+                    </a>
+                </div>
+
+                <!-- Admin -->
+                <div class="nav-section" data-roles="admin">
+                    <span class="nav-label">Administration</span>
+                    <a href="#" class="nav-item" data-page="user-mgmt" onclick="navigate('user-mgmt', this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                        <span>User Management</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="sys-config" onclick="navigate('sys-config', this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+                        <span>System Config</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="audit-log" onclick="navigate('audit-log', this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                        <span>Audit Log</span>
+                    </a>
+                </div>
+
+                <!-- Analytics -->
+                <div class="nav-section">
+                    <span class="nav-label">Analytics</span>
+                    <a href="#" class="nav-item" data-page="analytics" onclick="navigate('analytics', this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+                        <span>Portfolio Analytics</span>
+                    </a>
+                    <a href="#" class="nav-item" data-page="impact" onclick="navigate('impact', this)">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+                        <span>Economic Impact</span>
+                    </a>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="user-profile" id="sidebar-user">
+                    <div class="user-avatar" id="user-avatar">KM</div>
+                    <div class="user-info">
+                        <span class="user-name" id="user-name">Loading...</span>
+                        <span class="user-role" id="user-role">...</span>
+                    </div>
+                    <button class="btn-icon" onclick="handleLogout()">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 01-2-2V5a2 2 0 012-2h4"/><polyline points="16,17 21,12 16,7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="mobile-menu" onclick="toggleSidebar()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+                    </button>
+                    <div class="breadcrumb" id="breadcrumb">
+                        <span>Dashboard</span>
+                    </div>
+                </div>
+                <div class="topbar-right">
+                    <div class="search-bar">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" placeholder="Search..." id="global-search">
+                    </div>
+                    <button class="btn-icon notification-btn" onclick="toggleNotifications()" id="notif-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
+                        <span class="notif-badge" id="notif-badge" style="display:none">3</span>
+                    </button>
+                    <!-- Notifications Panel -->
+                    <div class="notifications-panel" id="notif-panel" style="display:none">
+                        <div class="notif-header">
+                            <h4>Notifications</h4>
+                            <button onclick="clearNotifications()">Clear all</button>
+                        </div>
+                        <div class="notif-list" id="notif-list"></div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Page Content - Dynamically loaded -->
+            <div class="page-content" id="page-content">
+                <!-- Dashboard page loads here by default -->
+            </div>
+        </main>
+    </div>
+
+    <div id="toast-container"></div>
+    <div class="modal-overlay" id="modal-overlay" style="display:none" onclick="closeModal()"></div>
+    <div class="modal" id="modal" style="display:none"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/store.js"></script>
+    <script src="js/dashboard-app.js"></script>
+    <script src="js/pages.js"></script>
+</body>
+</html>

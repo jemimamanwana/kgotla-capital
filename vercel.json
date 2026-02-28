@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "name": "kgotla-capital",
+  "builds": [
+    { "src": "**/*", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/dashboard", "dest": "/dashboard.html" },
+    { "src": "/", "dest": "/index.html" }
+  ]
+}
